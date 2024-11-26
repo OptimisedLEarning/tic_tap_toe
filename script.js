@@ -30,6 +30,7 @@ endMessage.textContent = `X's turn!`
 endMessage.style.marginTop = '30px'
 endMessage.style.textAlign='center'
 board.after(endMessage)
+var someoneWon = false;
 
 
 /*To see the end of the game, 
@@ -73,12 +74,16 @@ the relevant player will win the game.*/
 
 function checkWin(currentPlayer) {
     for(let i = 0; i < winning_combinations.length; i++){
-        const [a, b, c] = winning_combinations[i]
-        if(squares[a].textContent === currentPlayer && squares[b].textContent === currentPlayer && squares[c].textContent === currentPlayer){
-            return true
+        const [a, b, c] = winning_combinations[i];
+        if(squares[a].textContent === 
+            currentPlayer && 
+            squares[b].textContent === currentPlayer 
+            && 
+            squares[c].textContent === currentPlayer){
+            return true;
         }
     }
-    return false
+    return false;
 }
 
 
@@ -96,7 +101,7 @@ function checkTie(){
             return false;
         }
     }
-    return true
+    return true;
 }
 
 /*I created a function called “restartButton” 
@@ -109,11 +114,12 @@ to endMessage.textContent.
 
 I have assigned the default player to X again.*/
 function restartButton() {
+    someoneWon = false;
     for(let i = 0; i < squares.length; i++) {
         squares[i].textContent = ""
     }
     endMessage.textContent=`X's turn!`
-    currentPlayer = players[0]
+    currentPlayer = players[0];
 }
 
 
@@ -130,26 +136,29 @@ the game state will be printed on the screen
 */
 
 
+for (let i = 0; i < squares.length; i++) {
+    squares[i].addEventListener("click", () => {
+      if (someoneWon) return;
+      if (squares[i].textContent !== "") {
+        return;
+      }
+      squares[i].textContent = currentPlayer;
+      if (checkWin(currentPlayer)) {
+        endMessage.textContent = `Game over! ${currentPlayer} wins!`;
+        someoneWon = true;
+        return;
+      }
+      if (checkTie()) {
+        endMessage.textContent = `Game is tied!`;
+        someoneWon = true;
+        return;
+      }
+      currentPlayer = currentPlayer === players[0] ? players[1] : players[0];
+      if (currentPlayer == players[0]) {
+        endMessage.textContent = `X's turn!`;
+      } else {
+        endMessage.textContent = `O's turn!`;
+      }
 
-for(let i = 0; i < squares.length; i++){
-    squares[i].addEventListener('click', () => {
-        if(squares[i].textContent !== ''){
-            return
-        }
-        squares[i].textContent = currentPlayer
-        if(checkWin(currentPlayer)) {
-            endMessage.textContent=`Game over! ${currentPlayer} wins!`
-            return
-        }
-        if(checkTie()) {
-            endMessage.textContent= `Game is tied!`
-            return
-        }
-        currentPlayer = (currentPlayer === players[0]) ? players[1] : players[0] 
-        if(currentPlayer == players[0]) {
-            endMessage.textContent= `X's turn!`
-        } else {
-            endMessage.textContent= `O's turn!`
-        }     
-    })   
-}
+    });
+};
