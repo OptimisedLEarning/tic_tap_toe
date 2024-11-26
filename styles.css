@@ -1,0 +1,78 @@
+body {  
+    font-family: 'Poppins', sans-serif;
+    color: #000000;
+}
+
+/* I put the title in the center of the page */
+h1 {
+    text-align: center;
+}
+
+/*
+I put the div whose id is board
+in the center of the page. 
+I set the margin properties for this.
+
+
+I set the width and height properties
+ of the div
+  whose id is board.*/
+#board {
+    margin-left: auto;
+    margin-right: auto;
+    width: 375px;
+    height: 375px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 5px;
+}
+/* I set the width and height properties for each square.
+I added the border property to these squares.
+I added a background color to the squares. 
+I set its position using the display property. 
+I created the color change when hovering over the squares. 
+I used the hover feature for this.*/
+.square {
+    width: 120px;
+    height: 120px;
+    border: 1px solid #080707;
+    background-color: #F5F5F5;
+    font-size: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/*I used the hover feature for this.*/
+
+.square:hover {
+    background-color: #FFFFE0;
+}
+
+/*
+
+I set the display properties and other styles 
+to the one whose id is restartButton. 
+
+
+*/
+#restartButton {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    height: 40px;
+    width: 150px;
+    background-color: #FFFFFF;
+    border: 1px solid #000000;
+    border-radius: 40px;
+    font-size: 18px;
+}
+
+/*
+Additionally, 
+I used the hover feature.
+*/
+#restartButton:hover {
+    background-color: #000000;
+    color: #FFFFFF;
+}
