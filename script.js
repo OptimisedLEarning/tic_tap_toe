@@ -25,12 +25,6 @@ let currentPlayer = players[0]
 // with the endMessage variable,
 //provided that certain conditions are met
 
-const endMessage = document.createElement('h2')
-endMessage.textContent = `X's turn!`
-endMessage.style.marginTop = '30px'
-endMessage.style.textAlign='center'
-board.after(endMessage)
-var someoneWon = false;
 
 
 /*To see the end of the game, 
